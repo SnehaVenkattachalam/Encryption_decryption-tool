@@ -39,36 +39,36 @@ def img_details():
     w, h = im.size
     print('width: ', w)
     print('height:', h)
-def imgData():                         #this function returns pixel value of image in form of array
+def imgData():                        
     a=d_path                         
     global dataSize, data_1d
     image = Image.open(a)
 
     image = np.array(image)
     dataSize = image.shape
-    #data = np.asarray(image)             #3d array into 1d
+    #data = np.asarray(image)            
     data_1d = image.ravel()
     #print(data_1d)
-def message():                      #this function is use to convert text message into ascii - binary
+def message():                      
     inp=inputtxt.get("1.0","end-1c")
     mytext= inp
     global binarytxt
     length = str(bin(len(mytext)))
-    length = length[2:].zfill(10)                  # $$$$ by changing the value of Zfill, user can input that number of character
-                                                   # $$$$ for eg.  zfill(10) --> 2^10 = 1024 character             
-    binarytxt = str(bin(int.from_bytes(mytext.encode(), 'big')))    #8bit
+    length = length[2:].zfill(10)                  
+                                                              
+    binarytxt = str(bin(int.from_bytes(mytext.encode(), 'big')))    
     binarytxt = length + binarytxt[2:]
     binarytxt = [int(x) for x in list(binarytxt)]
     print(binarytxt)
-def evenConvt(value):                            #function converts odd number into even in given range
+def evenConvt(value):                            
     value = value + 1
     return max(0, min(254, value))
-def oddConvt(value):                             #function converts even number into odd in given range
+def oddConvt(value):                             
     value = value + 1
     return max(0, min(255, value))
-def encode():                                    #encode message in given image and return staganograpy img
+def encode():                                    
 
-    for i in range(len(binarytxt)):              #need to add error wala function if message value increase the size of img and diffrent encryotion tecnique
+    for i in range(len(binarytxt)):              
         #print(imgData[i])
         val = data_1d[i] % 2
         if binarytxt[i] == 1:
@@ -182,7 +182,7 @@ def decWin():
     dec_source=Entry(root2,width=80,justify="center",textvariable=ds).pack()
 
     label7=Label(root2,text="The decoded message will be opened in next window and is also saved in same directory as source").pack()
-    """ outputtxt =Text(root2,height= 10,width=50).insert(END,asciiData) """
+    
     
 
     Fin_button2=Button(root2,text="Run",bg='green',width=10,command=p2).place(relx=0.75,rely=0.9)
